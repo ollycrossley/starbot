@@ -12,7 +12,9 @@ module.exports = {
         const arrayOfMessages = []
 
         messages.forEach(message => {
-            arrayOfMessages.push(message)
+            if (message.content.includes("http")) {
+                arrayOfMessages.push(message)
+            }
         })
 
         const starCounts = arrayOfMessages.map(message => ({
@@ -24,14 +26,14 @@ module.exports = {
 
 
         let reply = 'Messages ranked by star reactions:\n';
+        let msgreply = 'Messages ranked by star reactions:\n'
         sortedByStars.forEach((msg) => {
-            reply += `[${msg.stars} ⭐] - ${msg.content}\n`;
+            reply += `[${msg.stars} ⭐] - <${msg.content}>\n`;
+            msgreply += `[${msg.stars} ⭐] - ${msg.content}\n`;
         });
 
-        if (reply.length > 1999) {
-            writeFileSync(`${channel.name}.txt`, reply)
-        }
+        writeFileSync(`logs/${channel.name}.txt`, msgreply)
 
-        await interaction.reply(reply.length > 1999 ? "Output placed in messages.txt" : reply);
+        await interaction.reply(reply.length > 1999 ? `Output placed in ${channel.name}.txt` : reply);
     },
 };
