@@ -1,12 +1,12 @@
 // Require the necessary discord.js classes
 const fs = require('node:fs');
 const path = require('node:path');
-const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
-const {fileURLToPath} = require("url");
-const {dirname} = require("node:path");
+const { Client, Collection, GatewayIntentBits } = require('discord.js');
 const {config} = require("dotenv")
 
 // For ES6 Support Only
+// const {fileURLToPath} = require("url");
+// const {dirname} = require("node:path");
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = dirname(__filename)
 
