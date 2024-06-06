@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "NODE_ENV=development node index.js",
     "deploy-dev": "NODE_ENV=development node deploy-commands.js",
+    "prod": "NODE_ENV=production node index.js",
+    "deploy-prod": "NODE_ENV=development node deploy-commands.js",
     "test": "jest"
   },
   "keywords": [],
