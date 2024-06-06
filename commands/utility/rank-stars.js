@@ -12,7 +12,7 @@ module.exports = {
         const arrayOfMessages = []
 
         messages.forEach(message => {
-            if (message.content.includes("http")) {
+            if (message.content.includes("http") && (message.author.id !== "1248299736365269122")) {
                 arrayOfMessages.push(message)
             }
         })
@@ -26,13 +26,22 @@ module.exports = {
 
 
         let reply = 'Messages ranked by star reactions:\n';
-        let msgreply = 'Messages ranked by star reactions:\n'
-        sortedByStars.forEach((msg) => {
-            reply += `[${msg.stars} ⭐] - <${msg.content}>\n`;
-            msgreply += `[${msg.stars} ⭐] - ${msg.content}\n`;
+        let msgReply = 'Messages ranked by star reactions:\n'
+
+        sortedByStars.forEach((msg, index) => {
+            if (index === 0) {
+                reply += `[${msg.stars} ⭐]\n<${msg.content}>\n`;
+                msgReply += `[${msg.stars} ⭐]\n${msg.content}\n`;
+            } else if (sortedByStars[index - 1].stars === msg.stars) {
+                reply += `<${msg.content}>\n`;
+                msgReply += `${msg.content}\n`;
+            } else if (sortedByStars[index - 1].stars > msg.stars){
+                reply += `[${msg.stars} ⭐]\n<${msg.content}>\n`;
+                msgReply += `[${msg.stars} ⭐]\n${msg.content}\n`;
+            }
         });
 
-        writeFileSync(`logs/${channel.name}.txt`, msgreply)
+        writeFileSync(`logs/${channel.name}.txt`, msgReply)
 
         await interaction.reply(reply.length > 1999 ? `Output placed in ${channel.name}.txt` : reply);
     },
