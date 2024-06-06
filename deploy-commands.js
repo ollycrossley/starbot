@@ -57,6 +57,12 @@ const rest = new REST().setToken(token);
                 { body: commands },
             );
             console.log("Note: Global commands may take time to show up, so please be patient")
+        } else {
+            console.log(`Started refreshing ${commands.length} application (/) guild commands.`);
+            data = await rest.put(
+                Routes.applicationGuildCommands(clientId, guildId),
+                { body: commands },
+            );
         }
 
 
