@@ -24,11 +24,13 @@ module.exports = {
 
 
         let reply = 'Messages ranked by star reactions:\n';
-        sortedByStars.forEach((msg, index) => {
+        sortedByStars.forEach((msg) => {
             reply += `[${msg.stars} ⭐] - ${msg.content}\n`;
         });
 
-        writeFileSync("messages.txt", reply)
+        if (reply.length > 1999) {
+            writeFileSync(`${channel.name}.txt`, reply)
+        }
 
         await interaction.reply(reply.length > 1999 ? "Output placed in messages.txt" : reply);
     },
