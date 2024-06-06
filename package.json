@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "NODE_ENV=development node index.js",
+    "deploy-dev": "NODE_ENV=development node deploy-commands.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
