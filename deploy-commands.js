@@ -8,9 +8,13 @@ const pathToCorrectFile = `${__dirname}/.env.${ENV}`;
 config({ path: pathToCorrectFile });
 
 const clientId = process.env.DISCORD_CLIENT
+const guildId = process.env.GUILD_ID
 const token = process.env.DISCORD_TOKEN
 
+
 const commands = [];
+const args = [...process.argv]
+
 
 // Grab all the command folders from the commands directory you created earlier
 const foldersPath = path.join(__dirname, 'commands');
@@ -36,13 +40,25 @@ const rest = new REST().setToken(token);
 
 (async () => {
     try {
-        console.log(`Started refreshing ${commands.length} application (/) commands.`);
+        let data = undefined;
 
-        // The put method is used to fully refresh all commands in the guild with the current set
-        const data = await rest.put(
-            Routes.applicationCommands(clientId),
-            { body: commands },
-        );
+        if (args.includes("-guild")) {
+            console.log(`Started refreshing ${commands.length} application (/) guild commands.`);
+            data = await rest.put(
+                Routes.applicationGuildCommands(clientId, guildId),
+                { body: commands },
+            );
+        }
+
+        if (args.includes("-global")){
+            console.log(`Started refreshing ${commands.length} application (/) global commands.`);
+            data = await rest.put(
+                Routes.applicationCommands(clientId, guildId),
+                { body: commands },
+            );
+            console.log("Note: Global commands may take time to show up, so please be patient")
+        }
+
 
         console.log(`Successfully reloaded ${data.length} application (/) commands.`);
     } catch (error) {
