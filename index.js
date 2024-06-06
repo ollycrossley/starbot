@@ -17,8 +17,7 @@ config({ path: pathToCorrectFile });
 const token = process.env.DISCORD_TOKEN
 
 // Create a new client instance
-const client = new Client({ intents: [GatewayIntentBits["Guilds"]] });
-
+module.exports = client = new Client({ intents: [GatewayIntentBits["Guilds"], GatewayIntentBits["MessageContent"]] });
 
 // Command Handling
 
