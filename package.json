@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "NODE_ENV=development node index.js",
-    "deploy-dev": "NODE_ENV=development node deploys/deploy-guild.js",
+    "deploy-dev": "NODE_ENV=development node deploy-commands.js -guild -global",
     "test": "jest"
   },
   "keywords": [],
