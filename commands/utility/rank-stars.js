@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
+const {writeFileSync} = require("node:fs");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -24,9 +25,11 @@ module.exports = {
 
         let reply = 'Messages ranked by star reactions:\n';
         sortedByStars.forEach((msg, index) => {
-            reply += `**${index + 1}.** [${msg.stars} Stars] - ${msg.content}\n`;
+            reply += `[${msg.stars} ⭐] - ${msg.content}\n`;
         });
 
-        await interaction.reply(reply);
+        writeFileSync("messages.txt", reply)
+
+        await interaction.reply(reply.length > 1999 ? "Output placed in messages.txt" : reply);
     },
 };
