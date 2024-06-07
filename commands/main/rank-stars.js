@@ -22,7 +22,9 @@ module.exports = {
             stars: message.reactions.cache.get('⭐')?.count || 0,
         }));
 
-        const sortedByStars = starCounts.sort((a, b) => b.stars - a.stars);
+        const filteredStarCounts = starCounts.filter(message => message.stars > 0)
+
+        const sortedByStars = filteredStarCounts.sort((a, b) => b.stars - a.stars);
 
 
         let reply = 'Messages ranked by star reactions:\n';
