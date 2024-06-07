@@ -1,5 +1,7 @@
 # Starbot
 
+![Logo](src/github-banner.png)
+
 ## Introduction
 
 **Starbot** is a small Discord bot that is able to count the amount of star reacts to messages in a specific channel 
