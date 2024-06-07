@@ -4,10 +4,15 @@ const {writeFileSync} = require("node:fs");
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('rank-stars')
-        .setDescription('Ranks all available starred comments within the current channel.'),
+        .setDescription('Ranks all available starred comments within the current channel.')
+        .addBooleanOption(bool =>
+        bool.setName("include-null-cases")
+            .setDescription("Include cases where emoji doesn't exist")
+            .setRequired(false)),
     async execute(interaction) {
         const channel = interaction.channel;
         const messages = await channel.messages.fetch();
+        const includeNull = interaction.options.getBoolean("include-null-cases")
 
         const arrayOfMessages = []
 
@@ -22,7 +27,11 @@ module.exports = {
             stars: message.reactions.cache.get('⭐')?.count || 0,
         }));
 
-        const filteredStarCounts = starCounts.filter(message => message.stars > 0)
+        let filteredStarCounts = starCounts
+
+        if (!includeNull) {
+            filteredStarCounts = starCounts.filter(message => message.stars > 0)
+        }
 
         const sortedByStars = filteredStarCounts.sort((a, b) => b.stars - a.stars);
 
