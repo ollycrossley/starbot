@@ -52,7 +52,7 @@ module.exports = {
             }
         });
 
-        writeFileSync(`logs/${channel.name}.txt`, msgReply)
+        writeFileSync(`logs/${channel.name}-⭐.txt`, msgReply)
 
         await interaction.reply(reply.length > 1999 ? `Output placed in ${channel.name}.txt` : reply);
     },

@@ -38,7 +38,7 @@ module.exports = {
             const sortedByEmoji = filteredEmojiCounts.sort((a, b) => b.emojis - a.emojis);
 
             let reply = `Messages ranked by ${emoji} reactions:\n`;
-            let msgReply = `Messages ranked by ${emoji} reactions\n:`
+            let msgReply = `Messages ranked by ${emoji} reactions:\n`
 
             sortedByEmoji.forEach((msg, index) => {
                 if (index === 0) {
@@ -53,7 +53,7 @@ module.exports = {
                 }
             });
 
-            writeFileSync(`logs/${channel.name}.txt`, msgReply)
+            writeFileSync(`logs/${channel.name}-${emoji}.txt`, msgReply)
 
             await interaction.reply(reply.length > 1999 ? `Output placed in ${channel.name}.txt` : reply);
         } catch (e) {
