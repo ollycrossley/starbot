@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
+const {SlashCommandBuilder} = require('discord.js');
 const {writeFileSync} = require("node:fs");
 
 module.exports = {
@@ -6,9 +6,9 @@ module.exports = {
         .setName('rank-stars')
         .setDescription('Ranks all available starred comments within the current channel.')
         .addBooleanOption(bool =>
-        bool.setName("include-null-cases")
-            .setDescription("Include cases where emoji doesn't exist")
-            .setRequired(false)),
+            bool.setName("include-null-cases")
+                .setDescription("Include cases where emoji doesn't exist")
+                .setRequired(false)),
     async execute(interaction) {
         const channel = interaction.channel;
         const messages = await channel.messages.fetch();
@@ -46,7 +46,7 @@ module.exports = {
             } else if (sortedByStars[index - 1].stars === msg.stars) {
                 reply += `<${msg.content}>\n`;
                 msgReply += `${msg.content}\n`;
-            } else if (sortedByStars[index - 1].stars > msg.stars){
+            } else if (sortedByStars[index - 1].stars > msg.stars) {
                 reply += `[${msg.stars} ⭐]\n<${msg.content}>\n`;
                 msgReply += `[${msg.stars} ⭐]\n${msg.content}\n`;
             }

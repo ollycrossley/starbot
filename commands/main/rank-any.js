@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
+const {SlashCommandBuilder} = require('discord.js');
 const {writeFileSync} = require("node:fs");
 
 module.exports = {
@@ -21,7 +21,7 @@ module.exports = {
         })
 
         let emoji = undefined
-        if (/\p{Emoji_Presentation}/gu.test(userEmoji)){
+        if (/\p{Emoji_Presentation}/gu.test(userEmoji)) {
             emoji = userEmoji
         } else {
             interaction.reply("This is not a valid emoji")
