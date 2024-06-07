@@ -16,9 +16,9 @@ module.exports = {
                 .setRequired(false)
                 .setDescription("Add an optional regex filter for further filtering"))
         .addBooleanOption(bool =>
-        bool.setName("include-null-cases")
-            .setRequired(false)
-            .setDescription("Adds an optional filter for including or removing null cases (default true)")),
+            bool.setName("include-null-cases")
+                .setRequired(false)
+                .setDescription("Adds an optional filter for including or removing null cases (default true)")),
     async execute(interaction) {
 
         // Getting Option Data
@@ -39,7 +39,7 @@ module.exports = {
         // Checking for valid Regex input
         let isRegexValid = false;
         let formattedRegex = undefined
-        if (userRegex !== ""){
+        if (userRegex !== "") {
             try {
                 formattedRegex = new RegExp(userRegex, "i");
                 isRegexValid = true
@@ -47,8 +47,6 @@ module.exports = {
                 // do nothing
             }
         }
-
-        console.warn(formattedRegex)
 
         // Checking for valid emoji
         let emoji = undefined
@@ -77,8 +75,6 @@ module.exports = {
                 return formattedRegex.test(trimmedContent);
             });
         }
-
-        console.log(filteredEmojiCounts)
 
         // Sorting by the highest count
         const sortedByEmoji = filteredEmojiCounts.sort((a, b) => b.emojis - a.emojis);
