@@ -29,14 +29,18 @@ GUILD_ID=your-server-id
 
 These contents should be changed depending on which bot you are hosting and on what server.
 
+To find out how to get these details,
+please visit https://discordjs.guide/preparations/setting-up-a-bot-application.html
+
 ### Install Packages 
 
 Please run `npm install` to install all correct packages
 
-### Seeding your bot's commands
+### Setting up bot
 
-To make sure all commands transfer over to the bot correctly, please run `npm run deploy-dev` to seed all available dev commands.
+To make sure all commands transfer over to the bot correctly, please run `npm run deploy-prod` to seed all available commands.
+
 
 ### Running the bot
 
-To run the development bot, please run `npm run dev` and that should start the bot up
+To run the bot, please run `npm run prod` and that should start the bot up and running. 
