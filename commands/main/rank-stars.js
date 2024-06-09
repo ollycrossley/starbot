@@ -52,8 +52,9 @@ module.exports = {
             }
         });
 
-        writeFileSync(`logs/${channel.name}-⭐.txt`, msgReply)
+        const logFileUrl = `logs/${channel.name}-⭐.txt`
+        writeFileSync(logFileUrl, msgReply)
 
-        await interaction.reply(reply.length > 1999 ? `Output placed in ${channel.name}.txt` : reply);
+        await interaction.reply(reply.length > 1999 ? {content: "Log file created!", files: [logFileUrl]} : reply);
     },
 };
