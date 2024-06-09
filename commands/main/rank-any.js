@@ -105,9 +105,9 @@ module.exports = {
             }
         });
 
-        writeFileSync(`logs/${channel.name}-${emoji}.txt`, msgReply)
-
-        await interaction.reply(reply.length > 1999 ? `Output placed in ${channel.name}.txt` : reply); // Won't output if over max discord character limit
+        const logFileUrl = `logs/${channel.name}-${emoji}.txt`
+        writeFileSync(logFileUrl, msgReply)
+        await interaction.reply(reply.length > 1999 ? {content: "Log file created!", files: [logFileUrl]} : reply); // Won't output if over max discord character limit
 
     },
 };
