@@ -5,22 +5,23 @@ const { Client, Collection, GatewayIntentBits } = require('discord.js');
 const {config} = require("dotenv")
 
 // For ES6 Support Only
-// const {fileURLToPath} = require("url");
-// const {dirname} = require("node:path");
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = dirname(__filename)
+/*const {fileURLToPath} = require("url");
+const {dirname} = require("node:path");
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename)*/
 
+// Getting ENV status
 const ENV = process.env.NODE_ENV
 const pathToCorrectFile = `${__dirname}/.env.${ENV}`;
 config({ path: pathToCorrectFile });
 
+// Discord Token requisition
 const token = process.env.DISCORD_TOKEN
 
 // Create a new client instance
 module.exports = client = new Client({ intents: [GatewayIntentBits["Guilds"], GatewayIntentBits["MessageContent"]] });
 
 // Command Handling
-
 client.commands = new Collection();
 
 const foldersPath = path.join(__dirname, 'commands');
@@ -41,6 +42,7 @@ for (const folder of commandFolders) {
     }
 }
 
+// Event Handling
 const eventsPath = path.join(__dirname, 'events');
 const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
 
